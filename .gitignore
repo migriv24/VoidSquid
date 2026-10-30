@@ -1,0 +1,26 @@
+build/
+*.state.json
+*.state.json.log
+*.state.json.lock
+imgui.ini
+__pycache__/
+# projects and their journals are a person's work, never the repository's
+*.squid
+*.squid.log
+*.squid.lock
+# a library (recovered game data) never enters this repository
+assets.db
+_thumbs/
+# molerat: generated runs (IR, cache, emitted documents)
+molerat/out/
+
+# Never published (Void Mago's Iscariot): secrets, correspondence between
+# agents, and the private-terms list.
+.env
+git_secret.txt
+KEEP_HIDDEN.txt
+*.pem
+MESSAGE_FOR_*.md
+REPORT_FROM_*.md
+.private-terms
+.claude/settings.local.json
