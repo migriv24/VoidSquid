@@ -103,7 +103,28 @@ build work. It adds one constraint on the existing ones:
   feeding many runtimes, so the [build surface](/concepts/build-surface.md) should treat
   "which nib" as data, not as a mode. v0 wants this anyway for the GL and DS nibs.
 
+# The horizon after runtimes: systems *(added 2026-10-09, at Latin OS's request)*
+
+Latin OS reframed itself on 2026-10-09 as a constructed artifact with Void Squid as its
+forge (`LatinOS:/design/the-os-as-a-game.md`): the same four verbs (gather, compose, see
+the residual, build) over an **operating-system document**, with LITO as a build target
+beside Bevy and the DS, and *a device is a nib*. Recorded here as the horizon **after**
+runtimes, in that order, and **it waits on S6 like everything else**: an OS forge on an
+unproven emission pipeline is the while-we-are-here trap at its largest, which is Latin
+OS's own reading too. The author's "virtual box" is the game view
+([studio surfaces](/concepts/studio-surfaces.md) §3) open on LITO under a hypervisor, with
+Squid as the console; no emulator is written. What it changes in the railguard is §6, as
+restated ([open questions](/design/open-questions.md) S8).
+
+**ECS projection, in one sentence.** A mantle is an entity-component system with a
+confluent scheduler ([ECS sources](/sources/ecs-dungeon-siege-overwatch.md)), so a Bevy
+world is one *projection* of a mantle, which is what the Bevy nib already emits; projecting
+one game's systems into another's across dimensionality (*Master Chief into Link's
+Awakening*) is a nib with a residual plus a translation holiday for the parts that are not
+geometry. Nothing new is built to say it; what is needed is the nibs.
+
 # Open
 
 Recorded as [open questions](/design/open-questions.md) S6: *when does Squid's charter
-widen from harness to forge?* The lean is a test, not a date.
+widen from harness to forge?* The lean is a test, not a date. The shape of the forge once
+it widens is [the three pillars](/design/the-three-pillars.md).

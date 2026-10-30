@@ -28,6 +28,18 @@ would be asking the host to do its thinking.
 | **clock / progress** | turn the library's structured events into a progress bar | emits events into a host-registered sink |
 | **user choice** | which nib, which budget, when to build | nothing — policy is never the library's |
 
+Two rows added 2026-10-09 for after v0, so the table is written with both arrows in
+mind ([construct and deconstruct](/concepts/construct-and-deconstruct.md)). Neither is
+rung 3 work. A third, **recon**, was added and built on 2026-10-10
+([decompilation](/design/decompilation.md) §6): it is the ingress row's *discovery* half,
+already looking each tool up on PATH, with nothing invoked yet.
+
+| holiday *(after v0)* | what Void Squid does | the pure half, and whose |
+|---|---|---|
+| **artifact read (recon)** *(built 2026-10-10)* | read the first KiB of one file or walk an install folder (bounded: 20,000 files, 8 levels), and look each tool up on PATH; writes nothing, runs nothing; `effect recon` | `squid_read` (pure, in this repository like `squid_sim`): identify the artifact, the routes by depth, the residual ([recon](/concepts/recon.md)) |
+| **ingress toolchain** | discover and invoke a reader's tools (REA driving Ghidra, JADX and the rest; a community reader for a shipped game's files; `ndstool`, splat, decomp-toolkit, N64Recomp; universal-modder's `um`), with the same discovery, failure and permission discipline as devkitARM | a *reader* maps the tool's output into a document with a residual: the game model's for gameplay, Void Jelly's for geometry |
+| **hypervisor** | run an operating-system artifact under a hypervisor and show it as the game view, with Squid as console | nothing; LITO computes ([hosts](/concepts/hosts.md)) |
+
 # The rule for anything new
 
 When something does not obviously belong to either side:
@@ -91,5 +103,8 @@ Stated plainly, because it is the return on the boundary:
 
 # Status
 
-`status:planned`. Nothing built. This is rung 3's work; the file-read half arrives at rung
-2.5 with the [viewport](/concepts/viewport.md).
+`status:planned` for the page; **the file-read row is built** (2026-10-09, `src/app.cpp`,
+`open_ink`): the one file read in v0, reached as `effect open <path>`, refused by default,
+rehearsed by `--dry-run-effects`, granted by `--allow-effects`, journalled either way.
+The window/GL row is built as the [viewport](/concepts/viewport.md). Process, emulator,
+cache and the rest are rung 3's work.

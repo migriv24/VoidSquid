@@ -1,0 +1,10 @@
+{
+  "schema": "forge.match-task/0.1",
+  "source": "wii",
+  "target": "pc-x86_64-windows",
+  "budget": 8,
+  "functions": [
+    {"name": "CameraManGame::calc", "candidates": ["wip-1", "ok"]},
+    {"name": "CameraFollow::calc", "candidates": ["wip-1", "wip-2"]}
+  ]
+}

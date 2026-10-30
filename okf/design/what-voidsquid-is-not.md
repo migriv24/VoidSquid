@@ -25,6 +25,12 @@ It is called one, and it will be one, and **it is not one now.** v0 is a
 [conformance harness](/concepts/scope.md) for
 [Void Jelly](../../VoidJelly/okf/index.md) that happens to look like an editor.
 
+*2026-10-09: what it becomes is now written down.* [The three pillars](/design/the-three-pillars.md)
+names the game model, the studio and the hosts; [what a game is](/concepts/what-a-game-is.md)
+is the vocabulary. **This section still governs v0 and the studio.** The game model is
+pure and has its own test (§8 below); it is designed now and built when the author rules
+the charter widened ([open questions](/design/open-questions.md) S6, S14).
+
 Out of scope, all of it, however obviously a game engine has it: input mapping, physics,
 collision, audio, animation, scripting, entity/component systems, prefabs, scene
 serialisation of its own, play mode, particle systems, navmeshes, networking.
@@ -98,18 +104,32 @@ If a source-of-truth data structure appears in Void Squid, stop and re-read
 
 ---
 
-## 6. Its runtime is not Void Core
+## 6. The artifact never ships the forge
 
-For when the engine part actually arrives ([engine horizon](/design/engine-horizon.md)):
-**no Void Core ships to the target.** No runes, no tags, no dispatcher, and above all **no
-interpreter of mantle rules.**
+*Restated 2026-10-09 at Latin OS's request; the lean is S8 in
+[open questions](/design/open-questions.md), and the author decides. The original
+wording follows the restatement.*
 
+> **The artifact never ships the forge.** It may ship Void Core; it never ships the
+> studio, the viewport, the residual panel or the build surface.
+
+For a game the original rule still holds in full: **no Void Core ships to the target.**
+No runes, no tags, no dispatcher, and above all **no interpreter of mantle rules.**
+Authored rules compile to **inert data tables** the runtime reads in its own language.
 This is the specific error the superseded VoidDS proposal made
 (`VoidJelly:/design/voidds-proposal-critique.md` §1), and it is Void Core's own drift test
-failing — *"are we making Void Core compute the application's actual results?"* Authored
-rules compile to **inert data tables** the runtime reads in its own language.
+failing — *"are we making Void Core compute the application's actual results?"*
 
-Void Squid is the **forge**; the `.nds` is the **artifact**
+What changed is that an **operating system** is now an artifact this forge may emit
+(`LatinOS:/design/the-os-as-a-game.md`), and that artifact *is* Void Core all the way
+down: its kernel's rewriter is the Reduce contract, its roster is runes. Shipping Core
+there is not drift, because Core is the artifact's own domain. So the drift test is
+kept and the wording is widened: **an artifact carries Void Core only when Void Core is
+the artifact's own computation, never because it was easier than compiling the forge's
+rules to data.** A DS cartridge stays Core-free. A Latin OS image carries Core. Neither
+carries Squid.
+
+Void Squid is the **forge**; the `.nds`, the Bevy app and the OS image are **artifacts**
 (`VoidCore:/design/domains-and-guarantees.md`). The line runs between them and not
 somewhere convenient.
 
@@ -121,3 +141,25 @@ somewhere convenient.
 
 Both answers are legitimate reasons to build software. Only the first one is a reason to
 build it *now*, in *this repository*, *before the library works*.
+
+---
+
+## 8. The game model has its own test, and it is not softer *(added 2026-10-09)*
+
+The first pillar ([what a game is](/concepts/what-a-game-is.md)) is not work that proves
+Void Jelly, so §7 would forbid it forever. It is instead work that makes a claim about
+what a game is, and the test for anything proposed there is three questions, all of which
+must be answered yes:
+
+1. **Can it be stated in Void Core's vocabulary** (rune, tag, link, content, rule,
+   holiday) without a new kind of thing?
+2. **Does it run in a unit test with no filesystem, network, display or clock?**
+3. **Can a reader recover it from a game nobody in this family made**, or name it in a
+   residual ([construct and deconstruct](/concepts/construct-and-deconstruct.md) §5)?
+
+A proposal that fails the third is an editor convenience and belongs to the studio, where
+§1 and §7 apply to it. A proposal that fails the second is a host's or a runtime's. A
+proposal that fails the first is a finding about Void Core, to report upstream.
+
+What does not change: the game model computes nothing about geometry (§3), owns no
+`.ink` (§4), owns no truth outside the mantle (§5), and ships no forge to any target (§6).

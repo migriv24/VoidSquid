@@ -31,6 +31,15 @@ hardest constraints and the least room to fake it.
 forge that pours into many runtimes, including the Rust/Bevy ones the open-source scene is
 now building. Worked out in [the forge for many runtimes](/design/the-forge-for-many-runtimes.md).
 
+**2026-10-09: the sketch has names.** *A game editor plus a conventional runtime* is now
+[the three pillars](/design/the-three-pillars.md) (the game model, the studio, the hosts)
+on the editor side, and the runtime stays where this page put it: on the artifact side,
+in its own language. The "genuinely unresolved" list below is partly answered by
+[what a game is](/concepts/what-a-game-is.md): gameplay authoring lives in the game
+document (S12); the rule vocabulary is Core rules for structure, Allomone for derivation,
+and inert tables for the runtime; and "one engine or one per target" is answered *one
+forge, one runtime per target*. The DS platformer question stays open.
+
 # What the runtime would and would not be
 
 **Would:** eat a blot and some data tables; run a loop; do input, physics, collision, audio;

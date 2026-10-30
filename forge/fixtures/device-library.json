@@ -1,0 +1,91 @@
+{
+  "schema": "forge.device-library/0.1",
+  "devices": [
+    {
+      "id": "c-host",
+      "name": "Portable C++ host source",
+      "cpu": "portable-c",
+      "kind": "source",
+      "toolchain": "g++ / clang++",
+      "runtime": "native",
+      "subsystems": [
+        {"name": "gpu", "impl": "host GL / none"},
+        {"name": "audio", "impl": "host audio"},
+        {"name": "input", "impl": "keyboard / mouse"},
+        {"name": "storage", "impl": "filesystem"},
+        {"name": "os", "impl": "host OS"}
+      ],
+      "registers": [
+        {"name": "physics", "impl": "Ocean gravity model"},
+        {"name": "rules", "impl": "native C++"},
+        {"name": "presentation", "impl": "none (console)"}
+      ]
+    },
+    {
+      "id": "wii",
+      "name": "Nintendo Wii (Broadway)",
+      "cpu": "powerpc-broadway",
+      "kind": "source",
+      "toolchain": "mwcceppc (Metrowerks CodeWarrior for Wii)",
+      "runtime": "dolphin (oracle)",
+      "subsystems": [
+        {"name": "gpu", "impl": "GX FIFO"},
+        {"name": "audio", "impl": "AX + DSP"},
+        {"name": "input", "impl": "EXI/SI (Wiimote, Nunchuk)"},
+        {"name": "storage", "impl": "DVD / FST"},
+        {"name": "os", "impl": "Starlet / IOS"}
+      ],
+      "registers": [
+        {"name": "physics", "impl": "planet gravity, 106 fields (Ocean gravity model)"},
+        {"name": "motion", "impl": "SMG rigs (Onda)"},
+        {"name": "rules", "impl": "Petari decomp (not yet lifted)"},
+        {"name": "presentation", "impl": "J3D models (Jelly glTF)"},
+        {"name": "narrative", "impl": "stars and galaxies (game model)"}
+      ]
+    },
+    {
+      "id": "pc-x86_64-windows",
+      "name": "PC (x86-64, Windows)",
+      "cpu": "x86-64",
+      "kind": "target",
+      "toolchain": "clang++ / MSVC",
+      "runtime": "native",
+      "subsystems": [
+        {"name": "gpu", "impl": "OpenGL / Vulkan"},
+        {"name": "audio", "impl": "WASAPI / XAudio2"},
+        {"name": "input", "impl": "keyboard / mouse / gamepad"},
+        {"name": "storage", "impl": "filesystem"},
+        {"name": "os", "impl": "Windows"}
+      ],
+      "registers": [
+        {"name": "physics", "impl": "Ocean gravity model (native)"},
+        {"name": "motion", "impl": "Onda mixer (native)"},
+        {"name": "rules", "impl": "native C++"},
+        {"name": "presentation", "impl": "OpenGL / Vulkan"},
+        {"name": "narrative", "impl": "table / feast"}
+      ]
+    },
+    {
+      "id": "android-arm64",
+      "name": "Android (arm64)",
+      "cpu": "aarch64",
+      "kind": "target",
+      "toolchain": "NDK clang++",
+      "runtime": "native (Android)",
+      "subsystems": [
+        {"name": "gpu", "impl": "OpenGL ES / Vulkan"},
+        {"name": "audio", "impl": "AAudio / OpenSL ES"},
+        {"name": "input", "impl": "touch / gamepad"},
+        {"name": "storage", "impl": "filesystem"},
+        {"name": "os", "impl": "Android"}
+      ],
+      "registers": [
+        {"name": "physics", "impl": "Ocean gravity model (native)"},
+        {"name": "motion", "impl": "Onda mixer (native)"},
+        {"name": "rules", "impl": "native C++ (NDK)"},
+        {"name": "presentation", "impl": "OpenGL ES / Vulkan"},
+        {"name": "narrative", "impl": "table / feast"}
+      ]
+    }
+  ]
+}

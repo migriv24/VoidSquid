@@ -90,6 +90,14 @@ becomes answerable with evidence instead of imagination. See
 [engine horizon](/design/engine-horizon.md). Until then it is not a question worth having
 an opinion about.
 
+*2026-10-09: the author has an opinion about it anyway, and it is written down.*
+[The three pillars](/design/the-three-pillars.md) is what Void Squid becomes;
+[what a game is](/concepts/what-a-game-is.md) is the vocabulary it becomes it with. **v0
+is unchanged by both.** What changed is that v0's one screen is now the first instance of
+a pattern ([studio surfaces](/concepts/studio-surfaces.md) §6) and its build surface is
+written as one host of two ([hosts](/concepts/hosts.md)), so that neither has to be
+redone when the charter widens.
+
 # What it is in Void Core's terms
 
 The **forge, not the artifact** (`VoidCore:/design/domains-and-guarantees.md`). Void Core's
@@ -103,4 +111,11 @@ line and inherits none of this.
 
 # Status
 
-`status:planned`. Nothing built.
+`status:planned` for the scope as a whole; **rung 2.5 is built** (2026-10-09): the window,
+the viewport, the camera, `open`, and the headless front-end, with the residual panel
+showing the GL nib's account. Of the four claims above, **1** (the boundary is workable)
+has one data point and it held; **2** (the GL residual is nearly empty) reads *fits, 0
+dropped* on the sample; **3** (presentable) is a grouped list of 18 entries, which is
+readable at this size and untested at thousands; **4** (cheap enough to sit in a loop) is
+**not measured**, because nothing edits a scene from inside Void Squid yet and the
+sample is tiny. Rung 3 (the build button) is next and is the exit condition.

@@ -1,0 +1,150 @@
+{
+  "manifest": "void/0.1",
+  "name": "voidsquid",
+  "display_name": "Void Squid",
+  "kind": "application",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": "https://github.com/migriv24/VoidSquid",
+  "description": "The game engine of the Void family, on Void Core and Void Maiz: a studio for building new worlds out of the games a person owns (load a game, inspect and tag what came out, lay out tables, set the feast, play), and a forge that will pour one document into many artifacts. It began as the host Void Jelly cannot be for itself, and still is.",
+  "status": "alpha",
+  "status_note": "0.1.0 (2026-10-12): the first real version of the studio. A docked Void Maiz window (Turkey, Table, Feast, Data and Scene workspaces; Shelf, Inspector, Console, Load a game, Setup) over a .squid project, which is a Void Core state document; a game library's catalogue (assets.db, Void Hormiga's schema) imported as mantles, every edit a dispatcher command; Load a game (recon plus a catalogue of known decompilations, deterministic); a setup inventory (minimum, local model, vision, agent). Rung 2.5's .ink harness is the Scene workspace. Nothing builds for a constrained target yet (rung 3); the game model is still design only (S14).",
+  "requires": [
+    {
+      "name": "voidjelly",
+      "kind": "runtime",
+      "version": "*",
+      "sibling": "../VoidJelly",
+      "cmake_var": "VOIDJELLY_ROOT",
+      "link": "static",
+      "note": "the 3D library: owns .ink, nibs, emitters, residuals and every geometry computation. Void Squid is its first host and performs every effect it refuses to; Squid computes nothing about geometry and never parses .ink directly. The contract between the two repositories is the .ink format, which Jelly defines in its provides.documents; it is described here once, on the requires edge, because mago doctor notes that a requires edge plus an interacts_with entry for the same pair can drift. Jelly must build and ship with this directory deleted."
+    },
+    {
+      "name": "voidcore",
+      "kind": "runtime",
+      "version": ">=0.2.14",
+      "sibling": "../VoidCore",
+      "cmake_var": "VOIDCORE_ROOT",
+      "link": "shared",
+      "via": "voidmaiz",
+      "note": "the model and the dispatcher; Void Squid owns no truth, so every edit is a logged dispatcher command. Reached through Void Maiz's add_subdirectory as the prebuilt libvoidcore.dll, which ships beside the binary. Void Jelly links the same shared Core, so exactly one copy ships."
+    },
+    {
+      "name": "voidmaiz",
+      "kind": "runtime",
+      "version": "*",
+      "sibling": "../VoidMaiz",
+      "cmake_var": "VOIDMAIZ_ROOT",
+      "link": "static",
+      "note": "the window, the docking and the widget registry the studio's forms are drawn with (widget_form, project_scene, node_matches), the Session the project is opened through, and the headless front-end (maiz::run_cli). Application chrome (the menus, the workspace bar) is the host's, by Maiz's own line; both Void Hormiga and Void Squid now build the same shell, reported upstream."
+    },
+    {
+      "name": "voidallomone",
+      "kind": "runtime",
+      "version": "*",
+      "sibling": "../VoidAllomone",
+      "cmake_var": "VOIDALLOMONE_ROOT",
+      "link": "static",
+      "via": "voidmaiz",
+      "note": "not used directly yet; compiled into Void Maiz, so a change to it is a rebuild here. The game model's derive-only rules (what follows from what, never authored) will use it directly later."
+    }
+  ],
+  "interacts_with": [
+    {
+      "name": "voidbicho",
+      "kind": "runtime",
+      "seam": "effect",
+      "direction": "outbound",
+      "note": "Planned, and load-bearing for decompilation by the author's decision of 2026-10-10 (okf/design/decompilation.md §8): decompile, name, classify and extract models for the identify and lift stages, embeddings for the shelf, learned perception for the smart log. Invoked through Void Core's effect seam; every output is a proposal. Optional for everything except decompilation's model-assisted stages; nothing links."
+    },
+    {
+      "name": "voidmago",
+      "kind": "application",
+      "seam": "void.json",
+      "direction": "outbound",
+      "note": "Reads this manifest to build the family compatibility matrix."
+    }
+  ],
+  "provides": {
+    "gui": "voidsquid",
+    "cli": "squid",
+    "gui_cli_note": "Two executables from one main: `squid` (a console program: the CLI, and the window when run with no command or with a .squid or .ink argument) and `voidsquid` (the same program as a windowed application, for a desktop shortcut). Anything that is not a file argument is Void Maiz's headless front-end over the same HostApp.",
+    "describe": "squid --describe",
+    "effects": [
+      "artifact-read",
+      "cache",
+      "clock",
+      "emulator",
+      "file-read",
+      "file-write",
+      "network",
+      "process",
+      "window-gl"
+    ],
+    "effects_note": "The build surface (okf/concepts/build-surface.md): every holiday Void Jelly needs a host for. Effects are refused by default and granted per run; --dry-run-effects runs the whole pipeline and writes nothing. artifact-read (2026-10-10) is `effect recon`: the first KiB of one file or a bounded folder listing, plus a PATH lookup per tool, for decompilation's first stage (okf/concepts/recon.md). Two more are planned, an ingress toolchain that invokes readers' tools (REA, ndstool, decomp-toolkit, universal-modder's um) and a hypervisor (for an operating-system artifact), and are not listed until they exist. Added in 0.1.0: `library` (read a library, write the runtime's feast and worlds), `setup` (look at the machine), `loadgame` (recon plus the catalogue), `catalogue` (one network request, on the person's say-so, for the community decompilation list), `play` and `table3d` (start the runtime, a process), `reveal` (the system's file manager). Void MoleRat (2026-10-18) is reached as `effect molerat gather|research|compose|residual|build|status|task|answer|verify`; it uses file-read, file-write and clock, all listed above, and adds no effect kind.",
+    "contracts": {
+      "knowledge_bundle": "okf/"
+    }
+  },
+  "vendors": [
+    {
+      "name": "universal-modder",
+      "version": "0.2.0",
+      "version_source": "third_party/universal-modder/pyproject.toml",
+      "license": "MIT",
+      "upstream": "https://github.com/rehan-remade/universal-modder",
+      "path": "third_party/universal-modder",
+      "link": "vendored",
+      "note": "A REFERENCE, not a dependency: nothing compiles, links or runs it from here (third_party/README.md). Pinned at commit 550651675153070cce68066e07c3c8f95df86d08, trimmed of media, upstream agent entry files renamed so they never load into a Void Squid session. The design it informs is okf/design/decompilation.md; whether it becomes a toolchain or a fork is S19. To use um, install it the upstream way; `effect recon` reports whether it is on PATH."
+    },
+    {
+      "name": "SQLite",
+      "version": "3.53.3",
+      "license": "public domain",
+      "path": "vendor/sqlite",
+      "link": "vendored",
+      "note": "reads a library's assets.db; Void Hormiga's copy, unchanged"
+    },
+    {
+      "name": "nlohmann/json",
+      "version": "3.12.0",
+      "license": "MIT",
+      "path": "vendor/json",
+      "link": "vendored",
+      "note": "the studio's JSON; Void Hormiga's copy"
+    },
+    {
+      "name": "stb",
+      "version": "2.30",
+      "license": "MIT / public domain",
+      "path": "vendor/stb",
+      "link": "vendored",
+      "note": "stb_image (thumbnails, the icon), stb_image_write (the screenshot walk); Void Hormiga's copy"
+    },
+    {
+      "name": "Lato, JetBrains Mono",
+      "version": null,
+      "license": "SIL Open Font License 1.1",
+      "path": "vendor/fonts",
+      "link": "vendored",
+      "note": "the UI and console faces; Void Hormiga's copies"
+    },
+    {
+      "name": "Font Awesome Free",
+      "version": null,
+      "license": "CC BY 4.0 / SIL OFL 1.1 / MIT",
+      "path": "vendor/fonts/fa-solid-900.ttf",
+      "link": "vendored",
+      "note": "icon glyphs, with IconsFontAwesome6.h (zlib); Void Hormiga's copy"
+    }
+  ],
+  "version_sources": [
+    "CMakeLists.txt"
+  ],
+  "platforms": [],
+  "platforms_note": "Built and run on windows-x64 (MSYS2 UCRT64) on 2026-10-09 by an agent, with a screenshot. Per Void Maiz's rule a platform joins the array when a GUI binary has run there in front of a person, which has not happened yet. Latin OS is the second host, with no date (okf/concepts/hosts.md).",
+  "update": {
+    "channel": "desktop",
+    "side_by_side": true
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "molerat.foreign-ir/0.1",
+  "target": {
+    "id": "toy-ledge",
+    "title": "Toy Ledge",
+    "platform": "synthetic",
+    "origin": "authored fixture; no binary was disassembled",
+    "depth": "source"
+  },
+  "functions": [
+    {
+      "name": "player_update",
+      "addr": "0x100",
+      "blocks": [
+        {
+          "id": "entry",
+          "ops": [
+            {"kind": "load", "src": "stats.player_x"},
+            {"kind": "load", "src": "stats.move_speed"},
+            {"kind": "add", "src": "stats.move_speed"},
+            {"kind": "store", "dst": "stats.player_x"},
+            {"kind": "call", "value": "apply_gravity"},
+            {"kind": "call", "value": "door_check"},
+            {"kind": "return"}
+          ]
+        }
+      ],
+      "calls": ["apply_gravity", "door_check"],
+      "reads": ["stats.player_x", "stats.move_speed"],
+      "writes": ["stats.player_x"],
+      "evidence": ["writes player_x every tick", "calls the gravity and door systems"]
+    },
+    {
+      "name": "apply_gravity",
+      "addr": "0x180",
+      "blocks": [
+        {
+          "id": "entry",
+          "ops": [
+            {"kind": "load", "src": "stats.gravity"},
+            {"kind": "load", "src": "stats.player_vy"},
+            {"kind": "add", "src": "stats.gravity"},
+            {"kind": "store", "dst": "stats.player_vy"},
+            {"kind": "store", "dst": "stats.player_y"},
+            {"kind": "return"}
+          ]
+        }
+      ],
+      "calls": [],
+      "reads": ["stats.gravity", "stats.player_vy"],
+      "writes": ["stats.player_vy", "stats.player_y"],
+      "evidence": ["writes vertical velocity from a table constant"]
+    },
+    {
+      "name": "door_check",
+      "addr": "0x200",
+      "blocks": [
+        {
+          "id": "entry",
+          "ops": [
+            {"kind": "load", "src": "doors.count"},
+            {"kind": "cmp", "value": ">0"},
+            {"kind": "branch", "dst": "open"},
+            {"kind": "return"}
+          ]
+        }
+      ],
+      "calls": [],
+      "reads": ["doors.count"],
+      "writes": [],
+      "evidence": ["branches on a door count"]
+    }
+  ],
+  "tables": [
+    {
+      "name": "stats",
+      "fields": [
+        {"name": "gravity", "type": "f32", "unit": "m/s^2", "value": -9.8},
+        {"name": "move_speed", "type": "f32", "unit": "m/s", "value": 6.0},
+        {"name": "player_x", "type": "f32", "unit": "m", "value": 0.0},
+        {"name": "player_y", "type": "f32", "unit": "m", "value": 0.0},
+        {"name": "player_vy", "type": "f32", "unit": "m/s", "value": 0.0}
+      ]
+    },
+    {
+      "name": "doors",
+      "fields": [
+        {"name": "count", "type": "u8", "unit": "count", "value": 1}
+      ]
+    }
+  ],
+  "constants": ["0", "1"],
+  "residual": [
+    "tick rate is not in the IR",
+    "input mapping is not in the IR",
+    "collision response is not in the IR",
+    "rendering is not in the IR"
+  ]
+}

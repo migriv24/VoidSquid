@@ -1,0 +1,89 @@
+{
+  "about": "Void Squid's seed catalogue: games Void Squid has an ingest route for, and the community projects those routes read for names and structure (never copied). Written for Void Squid. Titles and links are facts; no game data is here. The larger community list is downloaded on the person's machine by `effect catalogue refresh`.",
+  "version": 1,
+  "games": [
+    {
+      "title": "Super Mario Galaxy",
+      "aliases": [
+        "SUPER MARIO GALAXY",
+        "Mario Galaxy"
+      ],
+      "platform": "wii",
+      "project": "Petari (SMGCommunity)",
+      "url": "https://github.com/SMGCommunity/Petari",
+      "kind": "decompilation",
+      "route": "exercise toolbox (../ds-mashup): BCSV placements, J3D models and materials, KCL collision, gravity fields, AST music; Petari read for class and folder names only",
+      "notes": "The disc image must be extracted first (Dolphin's 'Extract Entire Disc').",
+      "route_id": "smg"
+    },
+    {
+      "title": "Super Mario 64 DS",
+      "aliases": [
+        "SUPER MARIO 64 DS",
+        "SUPERMARIO64DS",
+        "SM64DS"
+      ],
+      "platform": "ds",
+      "project": "",
+      "url": "",
+      "kind": "toolkit",
+      "route": "exercise toolbox (../ds-mashup): NSBMD models through apicula, KCL collision",
+      "notes": "No full decompilation was found. The route reads data, not code.",
+      "route_id": "ds"
+    },
+    {
+      "title": "Mario Kart DS",
+      "aliases": [
+        "MARIO KART DS",
+        "MARIOKARTDS"
+      ],
+      "platform": "ds",
+      "project": "",
+      "url": "",
+      "kind": "toolkit",
+      "route": "exercise toolbox (../ds-mashup): course and item models through apicula",
+      "notes": "",
+      "route_id": "ds"
+    },
+    {
+      "title": "Mario Party DS",
+      "aliases": [
+        "MARIO PARTY DS",
+        "MARIOPARTYDS"
+      ],
+      "platform": "ds",
+      "project": "",
+      "url": "",
+      "kind": "toolkit",
+      "route": "exercise toolbox (../ds-mashup): board and character models through apicula",
+      "notes": "",
+      "route_id": "ds"
+    },
+    {
+      "title": "Donkey Kong 64",
+      "aliases": [
+        "DONKEY KONG 64",
+        "DK64"
+      ],
+      "platform": "n64",
+      "project": "dk64_lib (and the dk64 decompilation)",
+      "url": "https://gitlab.com/dk64_decomp/dk64",
+      "kind": "toolkit",
+      "route": "exercise toolbox (../ds-mashup): map geometry and textures through dk64_lib (GPL-3, invoked in its own environment, never imported); setups and pickups read by the toolbox",
+      "notes": "dk64_lib is on PyPI. Collision and model-two geometry are not decoded yet.",
+      "route_id": "dk64"
+    },
+    {
+      "title": "Super Mario 64",
+      "aliases": [
+        "SUPER MARIO 64"
+      ],
+      "platform": "n64",
+      "project": "n64decomp/sm64",
+      "url": "https://github.com/n64decomp/sm64",
+      "kind": "decompilation",
+      "route": "",
+      "notes": "A complete matching decompilation. No Void Squid route yet."
+    }
+  ]
+}
